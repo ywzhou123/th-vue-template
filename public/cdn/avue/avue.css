@@ -36,13 +36,20 @@ body,
     color: #ABABAB;
     text-decoration: none;
 }
-
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 .avue-home__loading {
     height: 32px;
     width: 32px;
     margin-bottom: 20px;
+    animation: spin .8s linear infinite;
 }
-
 .avue-home__title {
     color: #FFF;
     font-size: 14px;
