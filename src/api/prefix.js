@@ -3,11 +3,11 @@
  * 可配置多个列表元素，通过oldIndex和newIndex控制去取第几个元素
  */
 const prefix = {
-  basic: ['/sgpssc/basic/rest','/bms'],
+  basic: ['/sgpssc/basic/rest', '/bms'],
   powerplan: ['/sgpssc/powerplan/rest', '/blackout-info-release'],
   sms: ['/sgpssc/sms/rest', '/blackout-info-release'],
   report: ['/sgpssc/report/rest', '/blackout-info-release'],
-  cis: ['/sgpssc/cis/rest', '/rrcs'],
+  cis: ['/sgpssc/cis/rest', '/rrcs']
 }
 
 /**
@@ -18,7 +18,7 @@ const prefix = {
  *
  * GLOBAL_IS_ORIGIN 是否启用原系统方式，在public/index.html中配置
  */
-const getPrefix = function (key, oldIndex = 0, newIndex = 1) {
+const getPrefix = function(key, oldIndex = 0, newIndex = 1) {
   return window.GLOBAL_IS_ORIGIN ? prefix[key][oldIndex] : prefix[key][newIndex]
 }
 export default getPrefix

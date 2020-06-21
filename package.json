@@ -9,8 +9,7 @@
     "pre": "cnpm install || yarn --registry https://registry.npm.taobao.org || npm install --registry https://registry.npm.taobao.org ",
     "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "fix": "vue-cli-service lint fix"
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
@@ -26,8 +25,13 @@
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.4.4",
+    "@vue/cli-plugin-eslint": "^4.4.4",
     "@vue/cli-service": "^4.4.4",
+    "@vue/eslint-config-standard": "^5.1.2",
+    "babel-eslint": "^10.1.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "eslint": "^7.3.0",
+    "eslint-plugin-vue": "^6.2.2",
     "node-sass": "^4.14.1",
     "path": "^0.12.7",
     "sass-loader": "^8.0.2",

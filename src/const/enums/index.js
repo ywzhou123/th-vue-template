@@ -20,7 +20,7 @@ export default {
    *  根据value值获取对应的label值
    *  this.$enums.getLabel('boolYes', true)
    */
-  getLabel (key, value, options = []) {
+  getLabel(key, value, options = []) {
     const enumArray = Array.isArray(options) && options.length ? options : this[key]
     if (Array.isArray(enumArray) && enumArray.length) {
       const enumItem = enumArray.find(d => d.value === value)

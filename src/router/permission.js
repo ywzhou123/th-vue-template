@@ -11,11 +11,12 @@ NProgress.configure({ showSpinner: false })
 
 router.beforeEach((to, from, next) => {
   NProgress.start()
-  if( GLOBAL_IS_ORIGIN ){
+  if (window.GLOBAL_IS_ORIGIN) {
     next()
   } else {
     const meta = to.meta || {}
     if (store.getters.access_token) {
+      const lockPage = store.getters.website.lockPage
       if (store.getters.isLock && to.path !== lockPage) {
         next({ path: lockPage })
       } else if (to.path === '/login') {
@@ -55,10 +56,10 @@ router.beforeEach((to, from, next) => {
         next()
       }
     } else {
-      if (lt != '') {
+      if (window.lt !== '') {
         store.dispatch('LoginBySocial', {
           state: 'ISC',
-          code: lt
+          code: window.lt
         }).then(
           () => {
             store.dispatch('GetUserInfo').then(() => {

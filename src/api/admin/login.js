@@ -15,15 +15,15 @@ export const loginByUsername = (username, password, code, randomStr) => {
       'Authorization': 'Basic cGlnOnBpZw=='
     },
     method: 'post',
-    params: {username, password, randomStr, code, grant_type, scope}
+    params: { username, password, randomStr, code, grant_type, scope }
   })
 }
 
 export const loginBySSO = () => {
 
-  let client_id = 'test';
-  let client_secret = 'test';
-  let grant_type = 'client_credentials';
+  const client_id = 'test'
+  const client_secret = 'test'
+  const grant_type = 'client_credentials'
 
   return request({
     url: '/auth/oauth/token',
@@ -33,7 +33,7 @@ export const loginBySSO = () => {
       'Authorization': 'Basic dGVzdDp0ZXN0'
     },
     method: 'post',
-    params: {client_id, client_secret, grant_type}
+    params: { client_id, client_secret, grant_type }
   })
 }
 
@@ -47,7 +47,7 @@ export const refreshToken = (refresh_token) => {
       'Authorization': 'Basic cGlnOnBpZw=='
     },
     method: 'post',
-    params: {refresh_token, grant_type, scope}
+    params: { refresh_token, grant_type, scope }
   })
 }
 
@@ -60,7 +60,7 @@ export const loginByMobile = (mobile, code) => {
       'Authorization': 'Basic cGlnOnBpZw=='
     },
     method: 'post',
-    params: {mobile: 'SMS@' + mobile, code: code, grant_type}
+    params: { mobile: 'SMS@' + mobile, code: code, grant_type }
   })
 }
 
@@ -73,7 +73,7 @@ export const loginBySocial = (state, code) => {
       'Authorization': 'Basic cGlnOnBpZw=='
     },
     method: 'post',
-    params: {mobile: state + '@' + code, grant_type}
+    params: { mobile: state + '@' + code, grant_type }
   })
 }
 
@@ -88,11 +88,11 @@ export const GetUserInfoById = (userId) => {
   return request({
     url: '/system/user/info2',
     method: 'get',
-    params: {userId}
+    params: { userId }
   })
 }
 
-export const GetPsscUserInfoById = async (userId) => {
+export const GetPsscUserInfoById = async(userId) => {
   return await request({
     url: basic + '/session/userinfo/' + userId,
     method: 'get'

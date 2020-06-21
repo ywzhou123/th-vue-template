@@ -1,10 +1,9 @@
-import router from '@/router/router'
 import errorCode from '@/const/errorCode'
 import { serialize } from '@/utils/util'
 import { getStore } from '@/utils/store'
 
 // 创建实例
-const request = axios.create({
+const request = window.axios.create({
   timeout: 30000,
   withCredentials: true,
   headers: {
@@ -15,14 +14,14 @@ const request = axios.create({
 
 // 基本头部数据
 const baseHeader = () => {
-  let header = {
+  const header = {
     // AccessTime: new Date().getTime()
   }
-  const TENANT_ID = getStore({ name: 'tenantId'})
+  const TENANT_ID = getStore({ name: 'tenantId' })
   if (TENANT_ID) {
-    config.headers['TENANT-ID'] = TENANT_ID // 租户ID
+    header['TENANT-ID'] = TENANT_ID
   }
-  const token = getStore({ name: 'access_token'})
+  const token = getStore({ name: 'access_token' })
   if (token) {
     header['Authorization'] = 'Bearer ' + token
   }
@@ -40,7 +39,7 @@ request.interceptors.request.use(config => {
   }
 
   // 生产环境可以在index.html中配置接口地址，否则使用.dev.production中的配置
-  if(process.env.NODE_ENV == 'production') {
+  if (process.env.NODE_ENV === 'production') {
     config.baseURL = window.VUE_APP_API_PREFIX || (window.GLOBAL_IS_ORIGIN ? process.env.VUE_APP_API_PREFIX_ORIGIN : process.env.VUE_APP_API_PREFIX)
   } else {
     // 开发环境在接口地址前加上前缀，在vue.config.js中的代理进行区分
@@ -80,13 +79,13 @@ request.interceptors.response.use(res => {
 })
 
 export default {
-  axios (config) {
-    return axios.request(config)
+  axios(config) {
+    return window.axios.request(config)
   },
-  request (config) {
+  request(config) {
     return request.request(config)
   },
-  upload (url, data, config={}) {
+  upload(url, data, config = {}) {
     return request({
       method: 'post',
       url,
@@ -96,7 +95,7 @@ export default {
       ...config
     })
   },
-  download (url, data, config={}) {
+  download(url, data, config = {}) {
     return request({
       method: 'post',
       url,
@@ -105,7 +104,7 @@ export default {
       ...config
     })
   },
-  post (url, data, config={}) {
+  post(url, data, config = {}) {
     return request({
       method: 'post',
       url,
@@ -113,7 +112,7 @@ export default {
       ...config
     })
   },
-  get (url, params, config={}) {
+  get(url, params, config = {}) {
     return request({
       method: 'get',
       url,
@@ -121,7 +120,7 @@ export default {
       ...config
     })
   },
-  put (url, data, config={}) {
+  put(url, data, config = {}) {
     return request({
       method: 'put',
       url,
@@ -129,7 +128,7 @@ export default {
       ...config
     })
   },
-  patch (url, data, config={}) {
+  patch(url, data, config = {}) {
     return request({
       method: 'patch',
       url,
@@ -137,7 +136,7 @@ export default {
       ...config
     })
   },
-  delete (url, data, config={}) {
+  delete(url, data, config = {}) {
     return request({
       method: 'delete',
       url,

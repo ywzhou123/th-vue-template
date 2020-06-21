@@ -1,5 +1,5 @@
-import axios from "@/api/axios"
-import { basic, powerplan } from "@/api/prefix"
+import axios from '@/api/axios'
+import { basic, powerplan } from '@/api/prefix'
 
 export default {
   // 单位下拉

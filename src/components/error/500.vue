@@ -1,3 +1,3 @@
 <template>
-  <th-error-500/>
+  <th-error-500 />
 </template>

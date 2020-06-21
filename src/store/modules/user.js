@@ -1,5 +1,5 @@
-import {getStore, setStore} from '@/utils/store'
-import {isURL, validatenull} from '@/utils/validate'
+import { getStore, setStore } from '@/utils/store'
+import { isURL, validatenull } from '@/utils/validate'
 import {
   loginBySSO,
   GetUserInfoById,
@@ -12,9 +12,9 @@ import {
   logout,
   refreshToken
 } from '@/api/admin/login'
-import {deepClone, encryption} from '@/utils/util'
+import { deepClone, encryption } from '@/utils/util'
 import webiste from '@/const/website'
-import {GetMenu} from '@/api/admin/menu'
+import { GetMenu } from '@/api/admin/menu'
 
 function addPath(ele, first) {
   const menu = webiste.menu
@@ -60,7 +60,7 @@ const user = {
   },
   actions: {
     // 根据用户名登录
-    LoginByUsername({commit}, userInfo) {
+    LoginByUsername({ commit }, userInfo) {
       const user = encryption({
         data: userInfo,
         key: 'ThCloudXXThCloud',
@@ -81,11 +81,10 @@ const user = {
     },
 
     // 根据用户名登录
-    LoginBySso({commit}, userId) {
+    LoginBySso({ commit }, userId) {
       return new Promise((resolve, reject) => {
         loginBySSO(userId).then(response => {
           const data = response.data
-          console.log('LoginBySso', data);
           commit('SET_ACCESS_TOKEN', data.access_token)
           commit('SET_REFRESH_TOKEN', data.refresh_token)
           commit('SET_EXPIRES_IN', data.expires_in)
@@ -98,7 +97,7 @@ const user = {
     },
 
     // 根据手机号登录
-    LoginByPhone({commit}, userInfo) {
+    LoginByPhone({ commit }, userInfo) {
       return new Promise((resolve, reject) => {
         loginByMobile(userInfo.mobile, userInfo.code).then(response => {
           const data = response.data
@@ -113,7 +112,7 @@ const user = {
       })
     },
     // 根据OpenId登录
-    LoginBySocial({commit}, param) {
+    LoginBySocial({ commit }, param) {
       return new Promise((resolve, reject) => {
         loginBySocial(param.state, param.code).then(response => {
           const data = response.data
@@ -127,7 +126,7 @@ const user = {
         })
       })
     },
-    async GetUserInfo({commit}) {
+    async GetUserInfo({ commit }) {
 
       const res = await getUserInfo()
 
@@ -136,13 +135,13 @@ const user = {
       commit('SET_ROLES', data.roles || [])
       commit('SET_PERMISSIONS', data.permissions || [])
 
-      const res2 = await GetPsscUserInfoById(lt)
+      const res2 = await GetPsscUserInfoById(window.lt)
       const psscData = res2.data.data || {}
       commit('SET_PSSC_USER_INFO', psscData)
 
     },
 
-    GetUserInfoById({commit}, userId) {
+    GetUserInfoById({ commit }, userId) {
       return new Promise((resolve, reject) => {
         GetUserInfoById(userId).then((res) => {
           const data = res.data.data || {}
@@ -155,10 +154,9 @@ const user = {
           reject()
         })
       })
-    }
-    ,
+    },
 
-    GetPsscUserInfoById({commit}, userId) {
+    GetPsscUserInfoById({ commit }, userId) {
       return new Promise((resolve, reject) => {
         GetUserInfoById(userId).then((res) => {
           const data = res.data.data || {}
@@ -169,11 +167,10 @@ const user = {
           reject()
         })
       })
-    }
-    ,
+    },
 
 
-    GetUserInfoByName({commit}, userName) {
+    GetUserInfoByName({ commit }, userName) {
       return new Promise((resolve, reject) => {
         GetUserInfoByName(userName).then((res) => {
           const data = res.data.data || {}
@@ -190,7 +187,7 @@ const user = {
 
 
     // 刷新token
-    RefreshToken({commit, state}) {
+    RefreshToken({ commit, state }) {
       return new Promise((resolve, reject) => {
         refreshToken(state.refresh_token).then(response => {
           const data = response.data
@@ -203,10 +200,9 @@ const user = {
           reject(error)
         })
       })
-    }
-    ,
+    },
     // 登出
-    LogOut({commit}) {
+    LogOut({ commit }) {
       return new Promise((resolve, reject) => {
         logout().then(() => {
           commit('SET_MENU', [])
@@ -225,7 +221,7 @@ const user = {
       })
     },
     // 注销session
-    FedLogOut({commit}) {
+    FedLogOut({ commit }) {
       return new Promise(resolve => {
         commit('SET_MENU', [])
         commit('SET_PERMISSIONS', [])
@@ -239,9 +235,7 @@ const user = {
       })
     },
     // 获取系统菜单
-    GetMenu({
-              commit
-            }) {
+    GetMenu({ commit }) {
       return new Promise(resolve => {
         GetMenu().then((res) => {
           const data = res.data.data

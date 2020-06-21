@@ -1,3 +1,3 @@
 <template>
-  <th-error-403/>
+  <th-error-403 />
 </template>

@@ -15,6 +15,6 @@ export default {
   fetchGetDisptachSheet: data => axios.get(cis + '/accept95598/getNewDispatchSheetByAppNo', data),
 
   // 母单发起约时工单
-  fetchDisptachArrangeTime: data => axios.get(cis + '/arrangeTimeSheetDisptach/doDispatchSheet', data),
+  fetchDisptachArrangeTime: data => axios.get(cis + '/arrangeTimeSheetDisptach/doDispatchSheet', data)
 
 }
