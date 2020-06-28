@@ -14,8 +14,7 @@ module.exports = {
   chainWebpack: config => {
     // 别名
     config.resolve.alias
-      // .set('@@', resolve('node_modules/th-pdiot-component-ui/src'))
-      .set('@@', resolve('src'))
+      .set('@@', resolve('node_modules/th-pdiot-component-ui/src'))
       .set('variable', resolve('node_modules/th-pdiot-component-ui/src/assets/theme/src/common/variable.scss'))
 
     // 忽略的打包文件
@@ -71,6 +70,7 @@ module.exports = {
   },
   // 未编译成es5的依赖包，处理低版本浏览器兼容性问题
   transpileDependencies: [
+    'th-pdiot-component-ui/src',
     'vue-echarts',
     'resize-detector'
   ]

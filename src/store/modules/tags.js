@@ -1,5 +1,5 @@
-import { getStore, setStore } from '@/utils/store'
-import { diff } from '@/utils/util'
+import { getStore, setStore } from '@@/utils/store'
+import { diff } from '@@/utils/util'
 import website from '@/const/website'
 
 const isFirstPage = website.isFirstPage

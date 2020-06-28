@@ -5,7 +5,7 @@ import router from './router'
 import store from '@/store'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
-import { validatenull } from '@/utils/validate'
+import { validatenull } from '@@/utils/validate'
 
 NProgress.configure({ showSpinner: false })
 

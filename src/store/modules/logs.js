@@ -1,4 +1,4 @@
-import { getStore, setStore } from '@/utils/store'
+import { getStore, setStore } from '@@/utils/store'
 import { dateFormat } from '@/filters/'
 import { sendLogs } from '@/api/admin/log'
 

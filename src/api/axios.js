@@ -1,6 +1,6 @@
 import errorCode from '@/const/errorCode'
-import { serialize } from '@/utils/util'
-import { getStore } from '@/utils/store'
+import { serialize } from '@@/utils/util'
+import { getStore } from '@@/utils/store'
 
 // 创建实例
 const request = window.axios.create({

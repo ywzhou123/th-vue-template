@@ -1,4 +1,4 @@
-import { getStore, removeStore, setStore } from '@/utils/store'
+import { getStore, removeStore, setStore } from '@@/utils/store'
 import website from '@/const/website'
 
 const common = {

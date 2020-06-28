@@ -1,5 +1,5 @@
-import { getStore, setStore } from '@/utils/store'
-import { isURL, validatenull } from '@/utils/validate'
+import { getStore, setStore } from '@@/utils/store'
+import { isURL, validatenull } from '@@/utils/validate'
 import {
   loginBySSO,
   GetUserInfoById,
@@ -12,7 +12,7 @@ import {
   logout,
   refreshToken
 } from '@/api/admin/login'
-import { deepClone, encryption } from '@/utils/util'
+import { deepClone, encryption } from '@@/utils/util'
 import webiste from '@/const/website'
 import { GetMenu } from '@/api/admin/menu'
 
