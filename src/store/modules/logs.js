@@ -1,5 +1,5 @@
 import { getStore, setStore } from '@@/utils/store'
-import { dateFormat } from '@/filters/'
+import { dateFormat } from '@@/filters/'
 import { sendLogs } from '@/api/admin/log'
 
 const logs = {
