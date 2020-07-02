@@ -9,7 +9,8 @@
 
 ### 2、配置
 
-  nvm安装目录/settings.txt
+  修改或创建文件：nvm安装目录/settings.txt
+  添加以下内容：
 
 ```
   node_mirror: https://npm.taobao.org/mirrors/node/ 
@@ -27,6 +28,8 @@
   nvm install v12.18.1
   # 切换node的版本
   nvm use v12.18.1
+  # 设置node的默认版本
+  nvm alias default v12.18.1
   # 查询当前使用的node版本
   node -v
 ```
