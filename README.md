@@ -43,6 +43,13 @@
   npm install
 ```
 
+或者
+
+```bash
+  npm run pre
+```
+
+
 ### 2、启动开发模式
 
 ```bash
@@ -53,6 +60,12 @@
 
 ```bash
   npm run build
+```
+
+### 4、编译发布版本，并且成生报告文件
+
+```bash
+  npm run report
 ```
 
 ## 目录结构说明

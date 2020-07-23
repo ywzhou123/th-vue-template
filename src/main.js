@@ -9,13 +9,20 @@ import 'normalize.css/normalize.css'
 import './assets/icon'
 import './router/permission'
 import './assets/css/index.scss'
-
 /**
- * 导入 th-pdiot-component-ui
+ * 根据需要启用相应的ui包
  */
-import ElementUI from 'th-pdiot-component-ui'
-import 'th-pdiot-component-ui/lib/theme/index.css'
-import 'th-pdiot-component-ui/lib/th-pdiot-component-ui.css'
+// 导入基础组件
+import ThVueComponent from 'th-vue-component'
+import 'th-vue-component/lib/theme/index.css'
+import 'th-vue-component/lib/th-vue-component.css'
+// // 导入业务组件
+// import ThVueBusiness from 'th-vue-business'
+// import 'th-vue-business/lib/th-vue-business.css'
+
+// // 导入图表组件
+// import ThVueEcharts from 'th-vue-echarts'
+// import 'th-vue-echarts/lib/th-vue-echarts.css'
 
 // 开启mock服务
 // process.env.NODE_ENV === 'development' && require('./mock/index.js')
@@ -24,10 +31,12 @@ Vue.use(globalUtil)
 
 Vue.use(router)
 
-Vue.use(ElementUI, {
+Vue.use(ThVueComponent, {
   size: 'mini',
   menuType: 'text'
 })
+// Vue.use(ThVueBusiness)
+// Vue.use(ThVueEcharts)
 
 Vue.config.productionTip = false
 

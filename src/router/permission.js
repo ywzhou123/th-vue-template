@@ -30,15 +30,6 @@ router.beforeEach((to, from, next) => {
               next({ path: '/login' })
             })
           })
-
-          // store.dispatch('GetUserInfoByName', lt).then(() => {
-          //   next({ path: '/' })
-          // }).catch(() => {
-          //   store.dispatch('FedLogOut').then(() => {
-          //     next({ path: '/login' })
-          //   })
-          // })
-
         } else {
           const value = to.query.src || to.fullPath
           const label = to.query.name || to.name
