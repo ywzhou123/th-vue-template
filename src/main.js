@@ -9,13 +9,12 @@ import 'normalize.css/normalize.css'
 import './assets/icon'
 import './router/permission'
 import './assets/css/index.scss'
-/**
- * 根据需要启用相应的ui包
- */
+
 // 导入基础组件
 import ThVueComponent from 'th-vue-component'
 import 'th-vue-component/lib/theme/index.css'
 import 'th-vue-component/lib/th-vue-component.css'
+
 // // 导入业务组件
 // import ThVueBusiness from 'th-vue-business'
 // import 'th-vue-business/lib/th-vue-business.css'
@@ -31,11 +30,14 @@ Vue.use(globalUtil)
 
 Vue.use(router)
 
+// 导入基础组件
 Vue.use(ThVueComponent, {
   size: 'mini',
   menuType: 'text'
 })
+// 导入业务组件
 // Vue.use(ThVueBusiness)
+// 导入图表组件
 // Vue.use(ThVueEcharts)
 
 Vue.config.productionTip = false
