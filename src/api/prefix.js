@@ -7,7 +7,8 @@ const prefix = {
   powerplan: ['/sgpssc/powerplan/rest', '/blackout-info-release'],
   sms: ['/sgpssc/sms/rest', '/blackout-info-release'],
   report: ['/sgpssc/report/rest', '/blackout-info-release'],
-  cis: ['/sgpssc/cis/rest', '/rrcs']
+  cis: ['/sgpssc/cis/rest', '/rrcs'],
+  supervision: ['/sgpssc/supervision/rest', '/sgpssc/supervision/rest']
 }
 
 /**
@@ -28,3 +29,4 @@ export const powerplan = getPrefix('powerplan')
 export const sms = getPrefix('sms')
 export const report = getPrefix('report')
 export const cis = getPrefix('cis')
+export const supervision = getPrefix('supervision')

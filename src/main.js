@@ -13,6 +13,7 @@ import './assets/css/index.scss'
 // 导入基础组件
 import ThVueComponent from 'th-vue-component'
 import 'th-vue-component/lib/theme/index.css'
+import 'th-vue-component/lib/th-vue-component.css'
 Vue.use(ThVueComponent)
 
 // // 导入业务组件
