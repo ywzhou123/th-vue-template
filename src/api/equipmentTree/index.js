@@ -1,5 +1,5 @@
 import axios from '@/api/axios'
-import { basic, powerplan } from '@/api/prefix'
+import { basic, powerplan, jyhpwyw } from '@/api/prefix'
 
 export default {
   // 单位下拉
@@ -15,5 +15,10 @@ export default {
   // 通过台区查询用户
   fetchEquipmentUserList: data => axios.get(basic + '/crm/cust/list/tg/' + data.tgIds, data.filter),
   // 电压下拉
-  fetchVoltageOptions: data => axios.get(basic + '/interfaceCode/searchByType', data)
+  fetchVoltageOptions: data => axios.get(basic + '/interfaceCode/searchByType', data),
+  // 获取开关数据
+  fetchSwitchList: data => axios.get(powerplan + '/powerOffonAffectArea/list/switch', data),
+  // 巡视设备列表
+  fetchSbByLineId: data => axios.get(jyhpwyw + '/patrolTask/searchSbByLineId', data)
+
 }

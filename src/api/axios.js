@@ -68,7 +68,7 @@ request.interceptors.response.use(res => {
     return
   }
 
-  if (status !== 200 || res.data.code !== 0) {
+  if (status !== 200) {
     console.error(message)
     return Promise.reject(new Error(message))
   }
