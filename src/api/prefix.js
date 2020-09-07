@@ -9,7 +9,8 @@ const prefix = {
   report: ['/sgpssc/report/rest', '/blackout-info-release'],
   cis: ['/sgpssc/cis/rest', '/rrcs'],
   supervision: ['/sgpssc/supervision/rest', '/sgpssc/supervision/rest'],
-  jyhpwyw: ['/sgpssc/jyhpwyw/rest', '/sgpssc/jyhpwyw/rest']
+  jyhpwyw: ['/sgpssc/jyhpwyw/rest', '/sgpssc/jyhpwyw/rest'],
+  waittask: ['/sgpssc/waittask/rest', '/sgpssc/waittask/rest']
 }
 
 /**
@@ -32,3 +33,4 @@ export const report = getPrefix('report')
 export const cis = getPrefix('cis')
 export const supervision = getPrefix('supervision')
 export const jyhpwyw = getPrefix('jyhpwyw')
+export const waittask = getPrefix('waittask')
