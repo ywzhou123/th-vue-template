@@ -11,14 +11,13 @@ export default {
   // 获取线路
   fetchEquipmentLine: data => axios.get(basic + '/equipment/line/' + data.source + '/sub-line-tree/' + data.id),
   // 获取台区数据
-  fetchEquipmentTgList: data => axios.get(powerplan + '/powerOffonAffectArea/searchtg', data),
+  fetchEquipmentTgList: data => axios.get(powerplan + '/equipment/transformer/searchtg', data),
   // 通过台区查询用户
   fetchEquipmentUserList: data => axios.get(basic + '/crm/cust/list/tg/' + data.tgIds, data.filter),
   // 电压下拉
   fetchVoltageOptions: data => axios.get(basic + '/interfaceCode/searchByType', data),
   // 获取开关数据
-  fetchSwitchList: data => axios.get(powerplan + '/powerOffonAffectArea/list/switch', data),
+  fetchSwitchList: data => axios.get(powerplan + '/equipment/switch/search-switch', data),
   // 巡视设备列表
-  fetchSbByLineId: data => axios.get(jyhpwyw + '/patrolTask/searchSbByLineId', data)
-
+  fetchSbByLineId: data => axios.get(jyhpwyw + '/equipment/patrol/equipments', data)
 }

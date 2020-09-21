@@ -4,12 +4,12 @@
  */
 const prefix = {
   basic: ['/sgpssc/basic/rest', '/bms'],
-  powerplan: ['/sgpssc/powerplan/rest', '/blackout-info-release'],
+  powerplan: ['/sgpssc/powerplan/rest', '/bms'],
   sms: ['/sgpssc/sms/rest', '/blackout-info-release'],
   report: ['/sgpssc/report/rest', '/blackout-info-release'],
   cis: ['/sgpssc/cis/rest', '/rrcs'],
   supervision: ['/sgpssc/supervision/rest', '/sgpssc/supervision/rest'],
-  jyhpwyw: ['/sgpssc/jyhpwyw/rest', '/sgpssc/jyhpwyw/rest'],
+  jyhpwyw: ['/sgpssc/jyhpwyw/rest', '/bms'],
   waittask: ['/sgpssc/waittask/rest', '/sgpssc/waittask/rest']
 }
 
