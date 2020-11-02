@@ -6,7 +6,7 @@ export default [
   /** 路由配置 begin */
   {
     path: '/pagea',
-    name: 'PageA',
+    name: '页面A',
     component: () =>
       import(/* webpackChunkName: "pagea" */ '@/views/PageA/Index'),
     meta: {

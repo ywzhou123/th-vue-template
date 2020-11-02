@@ -5,6 +5,7 @@
 ### 1、下载
 
 [nvm-setup.zip](https://github.com/coreybutler/nvm-windows/releases)
+[vscode](https://vscode.en.softonic.com/download)
 
 
 ### 2、配置
@@ -33,6 +34,10 @@
   # 查询当前使用的node版本
   node -v
 ```
+
+### 4、安装VsCode插件
+
+- 在左侧扩展面板的应用商店中搜索`Tellhow Vue 2.x Snippets`进行安装
 
 ## 项目部署
 
@@ -109,8 +114,8 @@
   VUE_APP_API_HOST = 'http://<后端接口IP地址>:<端口>'
   VUE_APP_API_HOST_ORIGIN = 'http://<后端接口IP地址>:<端口>'
 ```
-  参数`VUE_APP_API_HOST`指定**UAP**接口地址
-  参数`VUE_APP_API_HOST_ORIGIN`指定**微服务**接口地址
+  参数`VUE_APP_API_HOST`指定**微服务**接口地址
+  参数`VUE_APP_API_HOST_ORIGIN`指定**UAP**接口地址
 
 
 ## 干掉sockjs
@@ -120,3 +125,12 @@
   - `node_modules/sockjs-client/dist/sockjs.js`
 - 搜索并注释：
   - `self.xhr.send(payload);`
+
+
+## 启动失败
+
+> windows操作系统需要基础编译环境
+
+- 安装[python](https://www.python.org/downloads/windows/)
+- 下载[Visual Studio Build Tools](https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=BuildTools)
+- 设置`npm config set msvs_version 2017`

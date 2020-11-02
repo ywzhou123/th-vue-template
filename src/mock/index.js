@@ -4,8 +4,8 @@
 const Mock = require('mockjs')
 
 // 示例1
-import data from './data/example1.js'
-Mock.mock(/\/getPageAMockData/, 'get', data)
+import example1 from './json/example1.js'
+Mock.mock(RegExp('/getPageAMockData'), 'get', example1)
 
 // 示例2
-Mock.mock(/\/getPageAMockJson/, 'get', require('./json/example2.json'))
+Mock.mock(RegExp('/getPageAMockJson'), 'get', require('./json/example2.json'))

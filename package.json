@@ -67,5 +67,6 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
-  }
+  },
+  "eslintIgnore": ["xlsx.full.min.js"]
 }

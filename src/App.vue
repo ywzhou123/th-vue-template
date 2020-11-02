@@ -1,18 +1,12 @@
 <template>
   <div id="app">
     <router-view />
-    <theme />
   </div>
 </template>
 
 <script>
-import Theme from '@/components/theme/Index'
-
 export default {
-  name: 'App',
-  components: {
-    Theme
-  }
+  name: 'App'
 }
 </script>
 <style lang="scss">
