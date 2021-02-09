@@ -134,3 +134,26 @@
 - 安装[python](https://www.python.org/downloads/windows/)
 - 下载[Visual Studio Build Tools](https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=BuildTools)
 - 设置`npm config set msvs_version 2017`
+
+
+高级前端资格标准：
+熟练掌握各项前端技能：JavaScript、Html5、CSS3、SASS、LESS、ES6+、Vue、React、Webpack；
+具备跨终端（Mobile+PC）的前端开发能力，熟悉网络协议（HTTP/SSL），熟悉常见安全问题和对策；
+了解各大主流浏览器在页面渲染以及JS支持上的差异，以及处理浏览器样式兼容性的各种方案；
+对交互体验、性能优化、线上调试、工具化有一定的实战经验；
+了解设计模式、理解工程化思想，对构建和持续集成有一定认识，能将复杂问题简单化；
+掌握至少一门服务端脚本语言，如Python、NodeJS，能够编写脚本执行特定单一任务；
+
+
+中级前端资格标准：
+精通JavaScript, HTML5，熟悉ES6语法，掌握CSS3；
+精通Vue框架，熟练使用Element-UI组件库；
+熟悉模块化、前端编译和构建工具如webpack/gulp；
+对网站页面性能优化有一定认识和经验；
+
+初级前端资格标准：
+熟悉HTML/CSS/JavaScript，等基础知识， 熟悉各种布局。
+熟悉ES6语法，掌握CSS3；
+熟练掌握vue框架和element-ui开发；
+了解不同浏览器的差异（IE、Chrome、Firefox、Safari等）；
+熟练使用web前端开发调试工具，能够快速定位及解决问题。

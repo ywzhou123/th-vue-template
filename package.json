@@ -18,6 +18,7 @@
     "echarts": "^4.8.0",
     "element-ui": "^2.13.2",
     "normalize.css": "^8.0.1",
+    "qiankun": "^2.3.4",
     "th-vue-business": "*",
     "th-vue-component": "*",
     "th-vue-echarts": "*",
@@ -68,5 +69,7 @@
       "pre-commit": "lint-staged"
     }
   },
-  "eslintIgnore": ["xlsx.full.min.js"]
+  "eslintIgnore": [
+    "xlsx.full.min.js"
+  ]
 }
