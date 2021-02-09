@@ -38,6 +38,7 @@
 ### 4、安装VsCode插件
 
 - 在左侧扩展面板的应用商店中搜索`Tellhow Vue 2.x Snippets`进行安装
+- 提供了请多代码块快捷方式，具体查看插件说明文档
 
 ## 项目部署
 
@@ -125,7 +126,7 @@
   - `node_modules/sockjs-client/dist/sockjs.js`
 - 搜索并注释：
   - `self.xhr.send(payload);`
-
+> 但是会影响开发时热更新功能，需要手动刷新页面
 
 ## 启动失败
 
