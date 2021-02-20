@@ -17,6 +17,13 @@ module.exports = {
       .set('@@', resolve('node_modules/th-vue-component/src'))
       .set('variable', resolve('node_modules/th-vue-component/src/assets/theme/src/common/variable.scss'))
 
+    if (process.env.NODE_ENV === 'production') {
+      config.externals({
+        'vue': 'vue',
+        'th-vue-component': 'th-vue-component'
+      })
+    }
+
     // svg图标处理
     config.module
       .rule('svg')
@@ -66,8 +73,6 @@ module.exports = {
   },
   // 未编译成es5的依赖包，处理低版本浏览器兼容性问题
   transpileDependencies: [
-    'th-vue-component/src',
-    'vue-echarts',
-    'resize-detector'
+    'th-vue-component/src'
   ]
 }

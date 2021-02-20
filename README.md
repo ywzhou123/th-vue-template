@@ -1,3 +1,7 @@
+## CDN资源项目
+
+[tfs地址](http://192.168.14.227/DefaultCollection/PSSCS/_git/th-vue-cdn)
+
 ## 安装node版本管理工具
 
 > 安装前先卸载已安装的nodejs

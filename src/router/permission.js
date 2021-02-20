@@ -3,13 +3,13 @@
  */
 import router from './router'
 import store from '@/store'
-import NProgress from 'nprogress'
-import 'nprogress/nprogress.css'
+// import NProgress from 'nprogress'
+// import 'nprogress/nprogress.css'
 
-NProgress.configure({ showSpinner: false })
+window.NProgress.configure({ showSpinner: false })
 
 router.beforeEach((to, from, next) => {
-  NProgress.start()
+  window.NProgress.start()
   if (window.GLOBAL_IS_ORIGIN) {
     next()
   } else {
@@ -57,5 +57,5 @@ router.beforeEach((to, from, next) => {
 })
 
 router.afterEach(() => {
-  NProgress.done()
+  window.NProgress.done()
 })

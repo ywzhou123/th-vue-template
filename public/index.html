@@ -8,9 +8,10 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="format-detection" content="telephone=no">
     <meta http-equiv="X-UA-Compatible" content="chrome=1"/>
-    <link rel="stylesheet" href="<%= BASE_URL %>cdn/avue/avue.css">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title>标题</title>
+    <script src="<%= VUE_APP_CDN_HOST %>/cdn/utils/importAll.js" type="text/javascript"></script>
+    <script src='./cdn.config.js'></script>
   </head>
   <body>
     <noscript>
@@ -32,7 +33,6 @@
         </div>
       </div>
     </div>
-    <script src="<%= BASE_URL %>cdn/axios/1.0.0/axios.min.js" charset="utf-8"></script>
     <script>
       // 浏览器存储前缀，按项目进行修改
       window.localStoragePrefix = 'th-template-';

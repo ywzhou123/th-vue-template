@@ -1,8 +1,8 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+// import Vue from 'vue'
+// import Vuex from 'vuex'
 import getters from './getters'
 
-Vue.use(Vuex)
+window.Vue.use(window.Vuex)
 
 const modulesFiles = require.context('./modules', true, /\.js$/)
 const modules = modulesFiles.keys().reduce((modules, modulePath) => {
@@ -13,7 +13,7 @@ const modules = modulesFiles.keys().reduce((modules, modulePath) => {
   return modules
 }, {})
 
-const store = new Vuex.Store({
+const store = new window.Vuex.Store({
   modules,
   getters
 })
