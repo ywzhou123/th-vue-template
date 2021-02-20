@@ -1,14 +1,14 @@
 export default [
   {
     path: '/',
-    redirect: '/pagea'
+    redirect: '/pagea-subone'
   },
   /** 路由配置 begin */
   {
-    path: '/pagea',
+    path: '/pagea-subone',
     name: '页面A',
     component: () =>
-      import(/* webpackChunkName: "pagea" */ '@/views/PageA/Index'),
+      import(/* webpackChunkName: "pagea-subone" */ '../views/SubOne/Index.vue'),
     meta: {
       keepAlive: true,
       isTab: false,
