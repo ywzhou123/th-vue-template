@@ -1,36 +1,13 @@
-import Vue from 'vue'
+// import Vue from 'vue'
 import App from './views/Index.vue'
 import globalUtil from '@/utils/global'
-import 'babel-polyfill'
-import 'classlist-polyfill'
-import 'normalize.css/normalize.css'
 import '@/assets/css/index.scss'
 import '@/assets/icon'
 
-// 导入基础组件
-import ThVueComponent from 'th-vue-component'
-import 'th-vue-component/lib/theme/index.css'
-import 'th-vue-component/lib/th-vue-component.css'
-Vue.use(ThVueComponent)
+window.Vue.use(globalUtil)
 
-// // 导入业务组件
-// import ThVueBusiness from 'th-vue-business'
-// import 'th-vue-business/lib/th-vue-business.css'
-// Vue.use(ThVueBusiness)
+window.Vue.config.productionTip = false
 
-// 导入图表组件
-import ThVueEcharts from 'th-vue-echarts'
-import 'th-vue-echarts/lib/th-vue-echarts.css'
-Vue.use(ThVueEcharts)
-
-// 开启mock服务
-// process.env.NODE_ENV === 'development' && require('./mock/index.js')
-
-Vue.use(globalUtil)
-
-
-Vue.config.productionTip = false
-
-new Vue({
+new window.Vue({
   render: h => h(App)
 }).$mount('#app')

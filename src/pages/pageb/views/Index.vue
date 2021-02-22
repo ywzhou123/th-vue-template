@@ -1,16 +1,13 @@
 <template>
   <section class="container">
     this is pageb
-    <TInput></TInput>
   </section>
 </template>
 <script>
-import TInput from '@/components/form/TInput'
-
 export default {
   name: 'Index',
   components: {
-    TInput
+
   },
   mixins: [],
   props: {

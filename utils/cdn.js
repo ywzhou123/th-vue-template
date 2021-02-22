@@ -2,10 +2,10 @@ const glob = require('glob')
 const path = require('path')
 module.exports.glob = glob
 module.exports.path = path
-// const CompressionPlugin = require('compression-webpack-plugin')
 
-// 是否生产环境s
-module.exports.isProduction = process.env.NODE_ENV === 'production'
+// 是否生产环境
+const isProduction = process.env.NODE_ENV === 'production'
+module.exports.isProduction = isProduction
 
 // 解析文件路径
 module.exports.resolve = function(dir) {
@@ -15,6 +15,10 @@ module.exports.resolve = function(dir) {
 // 获取入口文件
 module.exports.getPages = function() {
   const pages = {}
+  let pageName = process.argv[3]
+  if (pageName && pageName.startsWith('--')) {
+    pageName = process.argv[4]
+  }
   let fileList, moduleName
   glob.sync('./src/pages/*').forEach(filepath => {
     fileList = filepath.split('/')
@@ -23,14 +27,24 @@ module.exports.getPages = function() {
       entry: `src/pages/${moduleName}/${moduleName}.js`,
       template: `src/pages/${moduleName}/${moduleName}.html`,
       filename: `${moduleName}.html`,
-      // inject: true,
       chunks: [`chunk-vendors`, `chunk-common`, `manifest.${moduleName}`, moduleName]
-      // chunks: [`chunk-vendors-${moduleName}`, `chunk-common-${moduleName}`, `manifest.${moduleName}`, moduleName]
     }
   })
+  if (isProduction && pageName) {
+    return { [pageName]: pages[pageName] }
+  }
   return pages
 }
 
-module.exports.cdn = { // 引用的CDN地址
-  js: ['https://cdn.jsdelivr.net/npm/vue']
+// 获取输出目录
+module.exports.getDist = function() {
+  let dir = 'dist'
+  let pageName = process.argv[3]
+  if (pageName && pageName.startsWith('--')) {
+    pageName = process.argv[4]
+  }
+  if (isProduction && pageName) {
+    dir = `${dir}/${pageName}`
+  }
+  return dir
 }
