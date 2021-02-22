@@ -39,9 +39,7 @@ module.exports = {
       config.externals({
         'vue': 'vue',
         'element-ui': 'element-ui',
-        'th-vue-component': 'th-vue-component',
-        'crypto-js': 'crypto-js',
-        'clipboard': 'clipboard'
+        'th-vue-component': 'th-vue-component'
       })
     }
     // 移除 preload
