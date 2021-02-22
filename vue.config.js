@@ -20,7 +20,10 @@ module.exports = {
     if (process.env.NODE_ENV === 'production') {
       config.externals({
         'vue': 'vue',
-        'th-vue-component': 'th-vue-component'
+        'element-ui': 'element-ui',
+        'th-vue-component': 'th-vue-component',
+        'crypto-js': 'crypto-js',
+        'clipboard': 'clipboard'
       })
     }
 
