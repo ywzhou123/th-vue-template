@@ -23,6 +23,7 @@ var _resources = [
   { async: true, path: 'cdn/js/xlsx-style/0.8.13/xlsx.full.min.js' },
   { async: true, path: 'cdn/js/screenfull/4.2.1/screenfull.js' },
   { async: true, path: 'cdn/js/clipboard/2.0.6/clipboard.min.js' },
+	{ async: true, path: 'cdn/js/crypto-js/3.1.9/crypto-js.js'},
   { async: true, path: 'cdn/js/pinyin/2.8.0/web-pinyin.js' },
   { async: true, path: 'cdn/js/sortablejs/1.10.2/Sortable.min.js' },
   { async: true, path: 'cdn/js/vuedraggable/2.23.2/vuedraggable.umd.min.js' }
