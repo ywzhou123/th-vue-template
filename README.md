@@ -139,3 +139,9 @@
 - 安装[python](https://www.python.org/downloads/windows/)
 - 下载[Visual Studio Build Tools](https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=BuildTools)
 - 设置`npm config set msvs_version 2017`
+
+
+## 打包说明
+
+当前方式是每个页面单独打包到`dist`下的一个子目录，公共模块不能被浏览器缓存共享，由于大部分是cdn方式，因此影响不大；
+如果是非cdn模式，公共部分较大，可以执行打包命令`npm run build:all`，统一打包到`dist`目录
