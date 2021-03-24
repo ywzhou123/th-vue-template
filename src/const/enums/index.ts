@@ -3,9 +3,9 @@
  */
 
 
-const modulesFiles = require.context('./', true, /\.js$/)
+const modulesFiles = require.context('./', true, /\.ts$/)
 const modules = modulesFiles.keys().reduce((modules, modulePath) => {
-  const path = modulePath.replace(/^\.\/(.*)\.\w+$/, '$1')  
+  const path = modulePath.replace(/^\.\/(.*)\.\w+$/, '$1')
   if (path !== 'index') {
     const value = modulesFiles(modulePath)
     if (typeof value.default === 'object') {
@@ -20,8 +20,8 @@ export default {
    *  根据value值获取对应的label值
    *  this.$enums.getLabel('boolYes', true)
    */
-  getLabel(key, value, options = []) {
-    const enumArray = Array.isArray(options) && options.length ? options : this[key]
+  getLabel(key:any, value:any, options = []):any {
+    const enumArray = Array.isArray(options) && options.length ? options : (<any> this)[key]
     if (Array.isArray(enumArray) && enumArray.length) {
       const enumItem = enumArray.find(d => d.value === value)
       if (enumItem) {
@@ -32,4 +32,4 @@ export default {
   },
   ...modules
 }
-  
+

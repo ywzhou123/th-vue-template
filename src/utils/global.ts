@@ -2,7 +2,7 @@ import request from '@/api'
 import enums from '@/const/enums/index'
 
 export default {
-  install(Vue, options) {
+  install(Vue:any) {
     // 静态资源目录前缀
     Vue.prototype.$path = '.'
     // 请求接口

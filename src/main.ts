@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import App from './App'
+import App from './App.vue'
 import router from './router/router'
 import store from './store'
 import globalUtil from './utils/global'
@@ -27,16 +27,14 @@ Vue.use(ThVueComponent)
 // Vue.use(ThVueEcharts)
 
 // 开启mock服务
-// process.env.NODE_ENV === 'development' && require('./mock/index.js')
+process.env.NODE_ENV === 'development' && require('./mock/index.ts')
 
 Vue.use(globalUtil)
-
-Vue.use(router)
 
 Vue.config.productionTip = false
 
 new Vue({
   router,
   store,
-  render: h => h(App)
+  render: (h:any) => h(App)
 }).$mount('#app')

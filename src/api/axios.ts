@@ -11,10 +11,14 @@ const request = window.axios.create({
     'Redirect-Header': false
   }
 })
-
+interface Header {
+  'TENANT-ID'?: string
+  Authorization?: string
+  AccessTime?: number
+}
 // 基本头部数据
 const baseHeader = () => {
-  const header = {
+  const header : Header = {
     // AccessTime: new Date().getTime()
   }
   const TENANT_ID = getStore({ name: 'tenantId' })
@@ -23,13 +27,13 @@ const baseHeader = () => {
   }
   const token = getStore({ name: 'access_token' })
   if (token) {
-    header['Authorization'] = 'Bearer ' + token
+    header.Authorization = 'Bearer ' + token
   }
   return header
 }
 
 // 拦截请求
-request.interceptors.request.use(config => {
+request.interceptors.request.use((config: any) => {
   config.headers = Object.assign({}, baseHeader(), config.headers)
 
   // headers中配置serialize为true开启序列化
@@ -51,15 +55,15 @@ request.interceptors.request.use(config => {
     console.error('接口地址错误')
   }
   return config
-}, error => {
+}, (error:Error) => {
   console.error(error)
   return Promise.reject(error)
 })
 
 // 拦截响应
-request.interceptors.response.use(res => {
+request.interceptors.response.use((res:any) => {
   const status = Number(res.status) || 200
-  const message = res.data.msg || errorCode[status] || errorCode['default']
+  const message = res.data.msg || (<any>errorCode)[status] || errorCode.default
   if (status === 401) {
     // store.dispatch('FedLogOut').then(() => {
     //   router.push({ path: '/login' })
@@ -73,19 +77,19 @@ request.interceptors.response.use(res => {
     return Promise.reject(new Error(message))
   }
   return res
-}, error => {
+}, (error:Error) => {
   console.error(error.message)
   return Promise.resolve(error)
 })
 
 export default {
-  axios(config) {
+  axios(config:any) {
     return window.axios.request(config)
   },
-  request(config) {
+  request(config:any) {
     return request.request(config)
   },
-  upload(url, data, config = {}) {
+  upload(url:string, data:any, config = {}) {
     return request({
       method: 'post',
       url,
@@ -95,7 +99,7 @@ export default {
       ...config
     })
   },
-  download(url, data, config = {}) {
+  download(url:string, data:any, config = {}) {
     return request({
       method: 'post',
       url,
@@ -104,7 +108,7 @@ export default {
       ...config
     })
   },
-  post(url, data, config = {}) {
+  post(url:string, data:any, config = {}) {
     return request({
       method: 'post',
       url,
@@ -112,15 +116,15 @@ export default {
       ...config
     })
   },
-  get(url, params, config = {}) {
+  get(url:string, data:any, config = {}) {
     return request({
       method: 'get',
       url,
-      params,
+      params: data,
       ...config
     })
   },
-  put(url, data, config = {}) {
+  put(url:string, data:any, config = {}) {
     return request({
       method: 'put',
       url,
@@ -128,7 +132,7 @@ export default {
       ...config
     })
   },
-  patch(url, data, config = {}) {
+  patch(url:string, data:any, config = {}) {
     return request({
       method: 'patch',
       url,
@@ -136,7 +140,7 @@ export default {
       ...config
     })
   },
-  delete(url, data, config = {}) {
+  delete(url:string, data:any, config = {}) {
     return request({
       method: 'delete',
       url,

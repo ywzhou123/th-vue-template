@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 /**
  * 配置参考:
  * https://cli.vuejs.org/zh/config/

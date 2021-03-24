@@ -10,5 +10,5 @@ export default {
   // orgNo: 36401
   // pageIndex: 1
   // pageSize: 20
-  fetchSmsTemplateList: data => axios.get(basic + '/smsTemplete/list', data)
+  fetchSmsTemplateList: (data:any) => axios.get(basic + '/smsTemplete/list', data)
 }

@@ -1,14 +1,14 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
+import VueRouter, { RouteConfig } from 'vue-router'
 import routes from './routes'
 
-const originalPush = VueRouter.prototype.push
-VueRouter.prototype.push = function push(location) {
-  return originalPush.call(this, location).catch(err => err)
-}
+// const originalPush = VueRouter.prototype.push
+// VueRouter.prototype.push = function push(location:any):any {
+//   return originalPush.call(this, location).catch((err:Error) => err)
+// }
 Vue.use(VueRouter)
 
-export const createRouter = routes => new VueRouter({
+export const createRouter = (routes: Array<RouteConfig>) => new VueRouter({
   routes,
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {

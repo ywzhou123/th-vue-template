@@ -1,19 +1,22 @@
 module.exports = {
   root: true,
   parserOptions: {
-    parser: 'babel-eslint',
-    sourceType: 'module'
+    ecmaVersion: 2020
   },
   env: {
-    browser: true,
-    node: true,
-    es6: true
+    node: true
   },
-  extends: ['plugin:vue/recommended', 'eslint:recommended'],
-
+  extends: [
+    'plugin:vue/essential',
+    '@vue/standard',
+    '@vue/typescript/recommended'
+  ],
   // add your custom rules here
   // it is base on https://github.com/vuejs/eslint-config-vue
   rules: {
+    '@typescript-eslint/no-explicit-any': ['off'],
+    '@typescript-eslint/explicit-function-return-type': ['off'],
+    '@typescript-eslint/explicit-module-boundary-types': ['off'],
     'vue/max-attributes-per-line': [2, {
       'singleline': 10,
       'multiline': {

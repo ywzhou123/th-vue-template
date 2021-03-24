@@ -4,7 +4,7 @@
 
 const excludes = ['index', 'axios', 'prefix']
 
-const modulesFiles = require.context('./', true, /\.js$/)
+const modulesFiles = require.context('./', true, /\.ts$/)
 const modules = modulesFiles.keys().reduce((modules, modulePath) => {
   const path = modulePath.replace(/^\.\/(.*)\.\w+$/, '$1')
   if (!excludes.includes(path)) {

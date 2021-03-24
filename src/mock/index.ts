@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 /**
  * 模拟数据
  */
-const Mock = require('mockjs')
+import example1 from './json/example1'
+import Mock from 'mockjs'
 
 // 示例1
-import example1 from './json/example1.js'
 Mock.mock(RegExp('/getPageAMockData'), 'get', example1)
 
 // 示例2
