@@ -32,7 +32,7 @@ export default [
     name: '500'
   },
   {
-    path: '*',
+    path: '/:catchAll(.*)',
     redirect: '/404'
   }
 ]
