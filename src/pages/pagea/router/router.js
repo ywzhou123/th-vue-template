@@ -9,6 +9,8 @@ window.VueRouter.prototype.push = function push(location) {
 window.Vue.use(window.VueRouter)
 
 export const createRouter = routes => new window.VueRouter({
+  mode: 'history', // 路由模式: hash/history
+  base: '/pagea/', // 应用的基路径
   routes,
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {

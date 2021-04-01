@@ -5,11 +5,14 @@
  */
 const { glob, path, resolve, isProduction, getPages, getDist } = require('./utils/cdn.js')
 
+const pages = getPages()
+
 module.exports = {
-  pages: getPages(),
+  pages,
   lintOnSave: true,
   productionSourceMap: false,
-  publicPath: '',
+  publicPath: isProduction ? './' : '/',
+  assetsDir: './',
   outputDir: getDist(),
   chainWebpack: config => {
     // 别名
@@ -51,6 +54,11 @@ module.exports = {
   },
   // 配置转发代理
   devServer: {
+    // history路由模式
+    historyApiFallback: {
+      verbose: true,
+      rewrites: Object.keys(pages).map(page => ({ from: new RegExp(`^\/${page}(?!\.).*$`), to: `/${page}.html` }))
+    },
     disableHostCheck: true,
     host: '0.0.0.0',
     port: 8080,
