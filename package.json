@@ -8,9 +8,9 @@
   "scripts": {
     "pre": "npm install --registry https://registry.npm.taobao.org",
     "dev": "vue-cli-service serve",
-    "build": "vue-cli-service build pagea && vue-cli-service build pageb",
+    "build": "node ./utils/build.js",
     "build:all": "vue-cli-service build",
-    "report": "vue-cli-service build --report pagea && vue-cli-service build --report pageb",
+    "report": "node ./utils/build.js --report",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
