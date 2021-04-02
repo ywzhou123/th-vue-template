@@ -145,3 +145,41 @@
 
 当前方式是每个页面单独打包到`dist`下的一个子目录，公共模块不能被浏览器缓存共享，由于大部分是cdn方式，因此影响不大；
 如果是非cdn模式，公共部分较大，可以执行打包命令`npm run build:all`，统一打包到`dist`目录
+
+
+## history路由模式
+
+[官方文档](https://router.vuejs.org/zh/guide/essentials/history-mode.html)
+
+修改文件 `router.js` 中的配置：
+
+```js
+  mode: 'history', // 路由模式：hash/history
+  base: '/pagea/', // 应用的基路径：子应用路径
+```
+
+修改文件 `vue.config.js` 中的配置：
+
+```js
+  publicPath: isProduction ? './' : '/',
+  assetsDir: './',
+  devServer: {
+    // history路由模式
+    historyApiFallback: {
+      verbose: true,
+      rewrites: [
+        { from: /^\/pagea\/.*$/, to: '/pagea.html'},
+        { from: /^\/pageb\/.*$/, to: '/pageb.html'}
+      ]
+    }
+  }
+```
+
+访问路径：
+
+http://localhost:8080/pagea
+http://localhost:8080/pageb
+http://localhost:8080/pagea/pagea-subone
+http://localhost:8080/pagea/pagea-subtwo
+
+后端配置参考官方文档，需要配置请求重定向服务
