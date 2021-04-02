@@ -1,9 +1,10 @@
+/* eslint-disable no-undef */
 // import Vue from 'vue'
 // import Vuex from 'vuex'
 
-window.Vue.use(window.Vuex)
+Vue.use(Vuex)
 
-const store = new window.Vuex.Store({
+const store = new Vuex.Store({
   state: {},
   mutations: {},
   actions: {},

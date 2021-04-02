@@ -1,9 +1,10 @@
+/* eslint-disable no-undef */
 import errorCode from '@/const/errorCode'
 import { serialize } from '@@/utils/util'
 import { getStore } from '@@/utils/store'
 
 // 创建实例
-const request = window.axios.create({
+const request = axios.create({
   timeout: 30000,
   withCredentials: true,
   headers: {

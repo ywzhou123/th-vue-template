@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 // import Vue from 'vue'
-import App from './pagea.vue'
+import App from './pagec.vue'
 import router from './router/router'
 import store from './store'
 import globalUtil from '@/utils/global'
