@@ -8,7 +8,9 @@ VueRouter.prototype.push = function push(location) {
 }
 Vue.use(VueRouter)
 
+// 注意修改微应用前缀'/template'，与微框架的apps中定义的activeRule保持一致
 export const createRouter = routes => new VueRouter({
+  base: window.__POWERED_BY_QIANKUN__ ? '/template' : process.env.BASE_URL,
   routes,
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
