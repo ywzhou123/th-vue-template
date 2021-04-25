@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 import App from './App'
-import router from './router/router'
+import router, { history } from './router/router'
 import store from './store'
 import globalUtil from './utils/global'
 import 'babel-polyfill'
@@ -30,14 +30,42 @@ import 'element-plus/lib/theme-chalk/index.css'
 // 开启mock服务
 // process.env.NODE_ENV === 'development' && require('./mock/index.js')
 
-const app = createApp(App)
-globalUtil(app)
+let instance = null
 
-app
-  .use(ElementPlus)
-  // .use(ThVueComponent)
-  // .use(ThVueBusiness)
-  // .use(ThVueEcharts)
-  .use(store)
-  .use(router)
-  .mount('#app')
+function render(props = {}) {
+  const { container } = props
+  instance = createApp(App)
+  globalUtil(instance)
+  instance
+    .use(ElementPlus)
+    // .use(ThVueComponent)
+    // .use(ThVueBusiness)
+    // .use(ThVueEcharts)
+    .use(router)
+    .use(store)
+    .mount(container ? container.querySelector('#app') : '#app')
+}
+
+if (!window.__POWERED_BY_QIANKUN__) {
+  render()
+}
+
+if (window.__POWERED_BY_QIANKUN__) {
+  // eslint-disable-next-line no-undef
+  __webpack_public_path__ = window.__INJECTED_PUBLIC_PATH_BY_QIANKUN__
+}
+
+export async function bootstrap() {
+  console.log('%c ', 'color: green;', 'vue3.0 app bootstraped')
+}
+
+export async function mount(props) {
+  render(props)
+}
+
+export async function unmount() {
+  instance.unmount()
+  instance._container.innerHTML = ''
+  instance = null
+  history.destroy()
+}

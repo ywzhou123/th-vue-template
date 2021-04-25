@@ -2,6 +2,7 @@
  * 配置参考:
  * https://cli.vuejs.org/zh/config/
  */
+const { name } = require('./package')
 const path = require('path')
 function resolve(dir) {
   return path.join(__dirname, dir)
@@ -36,6 +37,9 @@ module.exports = {
   },
   // 配置转发代理
   devServer: {
+    headers: {
+      'Access-Control-Allow-Origin': '*'
+    },
     disableHostCheck: true,
     host: '0.0.0.0',
     port: 8080,
@@ -62,6 +66,15 @@ module.exports = {
           ['^' + process.env.VUE_APP_API_PREFIX_ORIGIN]: ''
         }
       }
+    }
+  },
+  // 自定义webpack配置
+  configureWebpack: {
+    output: {
+      // 把子应用打包成 umd 库格式
+      library: `${name}-[name]`,
+      libraryTarget: 'umd',
+      jsonpFunction: `webpackJsonp_${name}`
     }
   },
   // 未编译成es5的依赖包，处理低版本浏览器兼容性问题

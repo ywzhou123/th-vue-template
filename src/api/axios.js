@@ -23,7 +23,7 @@ const baseHeader = () => {
   }
   const token = getStore({ name: 'access_token' })
   if (token) {
-    header['Authorization'] = 'Bearer ' + token
+    header.Authorization = 'Bearer ' + token
   }
   return header
 }
@@ -59,7 +59,7 @@ request.interceptors.request.use(config => {
 // 拦截响应
 request.interceptors.response.use(res => {
   const status = Number(res.status) || 200
-  const message = res.data.msg || errorCode[status] || errorCode['default']
+  const message = res.data.msg || errorCode[status] || errorCode.default
   if (status === 401) {
     // store.dispatch('FedLogOut').then(() => {
     //   router.push({ path: '/login' })

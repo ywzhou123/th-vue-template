@@ -8,7 +8,7 @@ export const loginBySocial = (state, code) => {
     url: '/auth/mobile/token/social',
     headers: {
       'TENANT-ID': '1',
-      'Authorization': 'Basic cGlnOnBpZw=='
+      Authorization: 'Basic cGlnOnBpZw=='
     },
     method: 'post',
     params: { mobile: state + '@' + code, grant_type }
