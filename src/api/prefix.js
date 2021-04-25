@@ -4,13 +4,7 @@
  */
 const prefix = {
   basic: ['/sgpssc/basic/rest', '/bms'],
-  powerplan: ['/sgpssc/powerplan/rest', '/bms'],
-  sms: ['/sgpssc/sms/rest', '/blackout-info-release'],
-  report: ['/sgpssc/report/rest', '/blackout-info-release'],
-  cis: ['/sgpssc/cis/rest', '/rrcs'],
-  supervision: ['/sgpssc/supervision/rest', '/sgpssc/supervision/rest'],
-  jyhpwyw: ['/sgpssc/jyhpwyw/rest', '/bms'],
-  waittask: ['/sgpssc/waittask/rest', '/sgpssc/waittask/rest']
+  report: ['/sgpssc/report/rest', '/blackout-info-release']
 }
 
 /**
@@ -27,10 +21,4 @@ const getPrefix = function(key, oldIndex = 0, newIndex = 1) {
 export default getPrefix
 
 export const basic = getPrefix('basic')
-export const powerplan = getPrefix('powerplan')
-export const sms = getPrefix('sms')
 export const report = getPrefix('report')
-export const cis = getPrefix('cis')
-export const supervision = getPrefix('supervision')
-export const jyhpwyw = getPrefix('jyhpwyw')
-export const waittask = getPrefix('waittask')

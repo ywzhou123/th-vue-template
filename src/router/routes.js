@@ -1,21 +1,7 @@
 export default [
   {
-    path: '/',
-    redirect: '/pagea'
+    path: '/'
   },
-  /** 路由配置 begin */
-  {
-    path: '/pagea',
-    name: '页面A',
-    component: () =>
-      import(/* webpackChunkName: "pagea" */ '@/views/PageA/Index'),
-    meta: {
-      keepAlive: true,
-      isTab: false,
-      isAuth: false
-    }
-  },
-  /** 路由配置 end */
   {
     path: '/403',
     component: () => import(/* webpackChunkName: "error" */ '@/components/error/403'),
@@ -30,9 +16,5 @@ export default [
     path: '/500',
     component: () => import(/* webpackChunkName: "error" */ '@/components/error/500'),
     name: '500'
-  },
-  {
-    path: '*',
-    redirect: '/404'
   }
 ]

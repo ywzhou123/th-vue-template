@@ -1,51 +1,27 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 import Vue from 'vue'
 import App from './App'
 import router from './router/router'
 import store from './store'
 import globalUtil from './utils/global'
-// import 'babel-polyfill'
-// import 'classlist-polyfill'
-// import 'normalize.css/normalize.css'
-// import './assets/icon'
-// import './router/permission'
+import './router/permission'
 import './assets/css/index.scss'
-
 // 导入基础组件
-// import ThVueComponent from 'th-vue-component'
-// import 'th-vue-component/lib/theme/index.css'
-// import 'th-vue-component/lib/th-vue-component.css'
-// Vue.use(ThVueComponent)
-// import ThLink from 'th-vue-component/packages/link/index'
-// Vue.use(ThLink)
-// import ElementUI from 'element-ui'
-// Vue.use(ElementUI)
-// // 导入业务组件
-// import ThVueBusiness from 'th-vue-business'
-// import 'th-vue-business/lib/th-vue-business.css'
-// Vue.use(ThVueBusiness)
-
-// // 导入图表组件
-// import ThVueEcharts from 'th-vue-echarts'
-// import 'th-vue-echarts/lib/th-vue-echarts.css'
-// Vue.use(ThVueEcharts)
-
+import ThVueComponent from 'th-vue-component'
+import 'th-vue-component/lib/theme/index.css'
+Vue.use(ThVueComponent)
 // 开启mock服务
-// process.env.NODE_ENV === 'development' && require('./mock/index.js')
-
+process.env.NODE_ENV === 'development' && require('./mock/index.js')
 
 // 微前端主应用配置
 import { registerMicroApps, setDefaultMountApp, start } from 'qiankun'
-let app = null
 
 Vue.use(globalUtil)
 Vue.use(router)
 Vue.config.productionTip = false
-new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app')
+
+let app = null
+
 /**
  * 渲染
  * @param {*} appContent 子应用html内容
@@ -54,61 +30,25 @@ new Vue({
 const render = ({ appContent, loading } = {}) => {
   if (!app) {
     app = new Vue({
-      el: '#app',
       router,
       store,
-      data() {
-        return {
-          content: appContent,
-          loading
-        }
-      },
-      render: h => h(App, {
-        props: {
-          content: this.content,
-          loading: this.loading
-        }
-      })
-    })
+      data: { apps },
+      render: h => h(App)
+    }).$mount('#app')
   } else {
     app.content = appContent
     app.loading = loading
   }
 }
 /**
- * 路由监听
- * @param {*} routerPrefix 路由前缀
- */
-const getActiveRule = (routerPrefix) => {
-  return location => location.pathname.startsWith(routerPrefix)
-}
-/**
  * 主应用初始化
  */
-// const initApp = () => {
-//   render({ appContent: '', loading: true })
-// }
-// initApp()
+render({ appContent: '', loading: true })
 /**
  * 注册子应用
  */
-registerMicroApps(
-  [
-    {
-      name: 'cloud-desktop app',
-      entry: '//localhost:8082',
-      container: '#yourContainer',
-      // render,
-      activeRule: '/yourActiveRule'
-    },
-    {
-      name: 'th-vue-component app',
-      entry: { scripts: ['//localhost:8081/main.js'] },
-      container: '#yourContainer2',
-      // render,
-      activeRule: '/yourActiveRule2'
-    }
-  ],
+
+registerMicroApps(apps,
   {
     // 挂载前
     beforeLoad: [
@@ -127,7 +67,7 @@ registerMicroApps(
 /**
  * 设置默认子应用
  */
-setDefaultMountApp('/yourActiveRule2')
+setDefaultMountApp(apps[0].name)
 /**
  * 启动
  */

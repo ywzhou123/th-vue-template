@@ -15,24 +15,6 @@ module.exports = {
     // 别名
     config.resolve.alias
       .set('@@', resolve('node_modules/th-vue-component/src'))
-      .set('variable', resolve('node_modules/th-vue-component/src/assets/theme/src/common/variable.scss'))
-
-    // svg图标处理
-    config.module
-      .rule('svg')
-      .exclude.add(resolve('src/assets/icon'))
-      .end()
-    config.module
-      .rule('icons')
-      .test(/\.svg$/)
-      .include.add(resolve('src/assets/icon'))
-      .end()
-      .use('svg-sprite-loader')
-      .loader('svg-sprite-loader')
-      .options({
-        symbolId: 'icon-[name]'
-      })
-      .end()
   },
   // 配置转发代理
   devServer: {
@@ -66,8 +48,6 @@ module.exports = {
   },
   // 未编译成es5的依赖包，处理低版本浏览器兼容性问题
   transpileDependencies: [
-    'th-vue-component/src',
-    'vue-echarts',
-    'resize-detector'
+    'th-vue-component/src'
   ]
 }

@@ -1,44 +1,3 @@
-## 安装node版本管理工具
-
-> 安装前先卸载已安装的nodejs
-
-### 1、下载
-
-[nvm-setup.zip](https://github.com/coreybutler/nvm-windows/releases)
-[vscode](https://vscode.en.softonic.com/download)
-
-
-### 2、配置
-
-  修改或创建文件：nvm安装目录/settings.txt
-  添加以下内容：
-
-```
-  node_mirror: https://npm.taobao.org/mirrors/node/ 
-  npm_mirror: https://npm.taobao.org/mirrors/npm/
-```
-
-### 3、常用命令
-
-```bash
-  # 列出所有可以安装的node版本
-  nvm ls-remote
-  # 列出所有已经安装的node版本
-  nvm ls
-  # 安装指定版本号的node
-  nvm install v12.18.1
-  # 切换node的版本
-  nvm use v12.18.1
-  # 设置node的默认版本
-  nvm alias default v12.18.1
-  # 查询当前使用的node版本
-  node -v
-```
-
-### 4、安装VsCode插件
-
-- 在左侧扩展面板的应用商店中搜索`Tellhow Vue 2.x Snippets`进行安装
-
 ## 项目部署
 
 ### 1、安装软件包
@@ -73,87 +32,126 @@
   npm run report
 ```
 
-## 目录结构说明
+## vue微应用
 
+### main.js
+
+```js
+let instance = null
+
+function render(props = {}) {
+  const { container } = props
+  instance = new Vue({
+    router,
+    store,
+    render: h => h(App)
+  }).$mount(container ? container.querySelector('#app') : '#app')
+}
+
+// webpack打包公共文件路径
+if (window.__POWERED_BY_QIANKUN__) {
+  // eslint-disable-next-line no-undef
+  __webpack_public_path__ = window.__INJECTED_PUBLIC_PATH_BY_QIANKUN__
+}
+// 独立运行
+if (!window.__POWERED_BY_QIANKUN__) {
+  render()
+}
+
+// 生命周期
+export async function bootstrap() {
+  console.log('[vue] vue app bootstraped')
+}
+export async function mount(props) {
+  console.log('[vue] props from main framework', props)
+  render(props)
+}
+export async function unmount() {
+  instance.$destroy()
+  instance.$el.innerHTML = ''
+  instance = null
+}
 ```
-┌─public                   静态资源目录，不会被打包编译
-├─src
-│  ├─api            	     接口目录
-│  ├─assets            	   静态资源目录
-│  ├─components            复用组件目录
-│  ├─const                 静态常量定义目录
-│  ├─filters               过滤器目录
-│  ├─mixins                混入器目录
-│  ├─router                路由配置目录
-│  ├─store                 vuex存储目录
-│  ├─utils                 工具类目录
-│  ├─views                 业务页面目录
-│  ├─main.js               Vue初始化入口文件
-│  └─App.vue               Vue根组件
-├─.env.development         开发环境变量
-├─.env.production          生产环境变量
-├─babel.config.js          webpack编译配置文件
-└─vue.config.js            vue配置文件
+
+### router.js
+
+```js
+new VueRouter({
+  base: window.__POWERED_BY_QIANKUN__ ? '/demo' : process.env.BASE_URL,
+  routes,
+})
 ```
 
-## 如何切换调用**UAP**接口还是**微服务**接口
+### vue.config.js
 
-- 配置`public/index.html`
+- packageName必须和apps里的name一致
 
+```js
+const packageName = require('./package').name
+const dev = process.env.NODE_ENV === 'development'
+const port = 1801
+module.exports = {
+  // 自定义webpack配置
+  configureWebpack: {
+    output: {
+      library: `${packageName}-[name]`,
+      libraryTarget: 'umd',
+      jsonpFunction: `webpackJsonp_${packageName}`
+    }
+  },
+  // 配置转发代理
+  devServer: {
+    headers: {
+      'Access-Control-Allow-Origin': '*'
+    },
+    disableHostCheck: true,
+    port: port,
+  }
+}
 ```
-  var GLOBAL_IS_ORIGIN = true
-  var VUE_APP_API_PREFIX = 'http://<后端接口IP地址>:<端口>'
+
+### public图片资源加载
+
+- 静态资源目录前缀
+```
+  Vue.prototype.$path = process.env.BASE_URL
+```
+- img地址加前缀：
+```html
+  <img :src="$path + item.img" alt="">
 ```
 
-  参数`GLOBAL_IS_ORIGIN`设为`true`表示调用UAP接口，将不会调用认证机制。
-  参数`VUE_APP_API_PREFIX`指定生产环境的接口地址，如果为空则使用`.env.production`中的配置
+- echarts-3D地图背景图片加载有跨域安全问题，需要把图片资源放在主框架中
 
-- 配置`.env.production` 或 `.env.development`
 
+
+## html微应用
+micorapp.js
+
+```js
+const render = ($) => {
+  $('#purehtml-container').html('Hello, render with jQuery');
+  return Promise.resolve();
+};
+
+((global) => {
+  global['purehtml'] = {
+    bootstrap: () => {
+      console.log('purehtml bootstrap');
+      return Promise.resolve();
+    },
+    mount: () => {
+      console.log('purehtml mount');
+      return render($);
+    },
+    unmount: () => {
+      console.log('purehtml unmount');
+      return Promise.resolve();
+    },
+  };
+  if (window.__POWERED_BY_QIANKUN__) {
+    __webpack_public_path__ = window.__INJECTED_PUBLIC_PATH_BY_QIANKUN__
+    debugger
+  }
+})(window);
 ```
-  VUE_APP_API_HOST = 'http://<后端接口IP地址>:<端口>'
-  VUE_APP_API_HOST_ORIGIN = 'http://<后端接口IP地址>:<端口>'
-```
-  参数`VUE_APP_API_HOST`指定**微服务**接口地址
-  参数`VUE_APP_API_HOST_ORIGIN`指定**UAP**接口地址
-
-
-## 干掉sockjs
-- 现象：
-  - network里面一直请求接口：`http://localhost:8080/sockjs-node/info?t=1462183700002`
-- 打开文件：
-  - `node_modules/sockjs-client/dist/sockjs.js`
-- 搜索并注释：
-  - `self.xhr.send(payload);`
-
-
-## 启动失败
-
-> windows操作系统需要基础编译环境
-
-- 安装[python](https://www.python.org/downloads/windows/)
-- 下载[Visual Studio Build Tools](https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=BuildTools)
-- 设置`npm config set msvs_version 2017`
-
-
-高级前端资格标准：
-熟练掌握各项前端技能：JavaScript、Html5、CSS3、SASS、LESS、ES6+、Vue、React、Webpack；
-具备跨终端（Mobile+PC）的前端开发能力，熟悉网络协议（HTTP/SSL），熟悉常见安全问题和对策；
-了解各大主流浏览器在页面渲染以及JS支持上的差异，以及处理浏览器样式兼容性的各种方案；
-对交互体验、性能优化、线上调试、工具化有一定的实战经验；
-了解设计模式、理解工程化思想，对构建和持续集成有一定认识，能将复杂问题简单化；
-掌握至少一门服务端脚本语言，如Python、NodeJS，能够编写脚本执行特定单一任务；
-
-
-中级前端资格标准：
-精通JavaScript, HTML5，熟悉ES6语法，掌握CSS3；
-精通Vue框架，熟练使用Element-UI组件库；
-熟悉模块化、前端编译和构建工具如webpack/gulp；
-对网站页面性能优化有一定认识和经验；
-
-初级前端资格标准：
-熟悉HTML/CSS/JavaScript，等基础知识， 熟悉各种布局。
-熟悉ES6语法，掌握CSS3；
-熟练掌握vue框架和element-ui开发；
-了解不同浏览器的差异（IE、Chrome、Firefox、Safari等）；
-熟练使用web前端开发调试工具，能够快速定位及解决问题。

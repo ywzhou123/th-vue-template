@@ -1,5 +1,5 @@
 import { getStore, setStore } from '@@/utils/store'
-import { GetPsscUserInfoById, getUserInfo, loginBySocial } from '@/api/admin/login'
+import request from '@/api/admin/login'
 
 const user = {
   state: {
@@ -14,7 +14,7 @@ const user = {
     // 根据OpenId登录
     LoginBySocial({ commit }, param) {
       return new Promise((resolve, reject) => {
-        loginBySocial(param.state, param.code).then(response => {
+        request.loginBySocial(param.state, param.code).then(response => {
           const data = response.data
           commit('SET_ACCESS_TOKEN', data.access_token)
           resolve()
@@ -25,12 +25,12 @@ const user = {
     },
     // 获取用户信息
     async GetUserInfo({ commit }) {
-      const res = await getUserInfo()
+      const res = await request.getUserInfo()
       const data = res.data.data || {}
       commit('SET_USER_INFO', data.sysUser)
       commit('SET_ROLES', data.roles || [])
 
-      const res2 = await GetPsscUserInfoById(window.lt)
+      const res2 = await request.GetPsscUserInfoById(window.lt)
       const psscData = res2.data.data || {}
       commit('SET_PSSC_USER_INFO', psscData)
 

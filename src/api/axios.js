@@ -1,4 +1,3 @@
-import errorCode from '@/const/errorCode'
 import { serialize } from '@@/utils/util'
 import { getStore } from '@@/utils/store'
 
@@ -14,9 +13,7 @@ const request = window.axios.create({
 
 // 基本头部数据
 const baseHeader = () => {
-  const header = {
-    // AccessTime: new Date().getTime()
-  }
+  const header = {}
   const TENANT_ID = getStore({ name: 'tenantId' })
   if (TENANT_ID) {
     header['TENANT-ID'] = TENANT_ID
@@ -43,7 +40,7 @@ request.interceptors.request.use(config => {
     config.baseURL = window.VUE_APP_API_PREFIX || (window.GLOBAL_IS_ORIGIN ? process.env.VUE_APP_API_PREFIX_ORIGIN : process.env.VUE_APP_API_PREFIX)
   } else {
     // 开发环境在接口地址前加上前缀，在vue.config.js中的代理进行区分
-    config.url = (window.GLOBAL_IS_ORIGIN ? process.env.VUE_APP_API_PREFIX_ORIGIN : process.env.VUE_APP_API_PREFIX) + config.url
+    config.baseURL = window.GLOBAL_IS_ORIGIN ? process.env.VUE_APP_API_PREFIX_ORIGIN : process.env.VUE_APP_API_PREFIX
   }
 
   // 无地址请求时提示错误
@@ -59,7 +56,7 @@ request.interceptors.request.use(config => {
 // 拦截响应
 request.interceptors.response.use(res => {
   const status = Number(res.status) || 200
-  const message = res.data.msg || errorCode[status] || errorCode['default']
+  const message = res.data.msg
   if (status === 401) {
     // store.dispatch('FedLogOut').then(() => {
     //   router.push({ path: '/login' })
